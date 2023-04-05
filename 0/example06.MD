@@ -24,4 +24,11 @@ sequenceDiagram
 	Note right of Browser : Rendered HTML
 
 	Browser ->> User : exampleapp/spa webpage
+	Note left of User :'sunshine and rain' into <from id='notes_form'>
+	User ->> Browser : Types and saves note 'sunshine and rain'
+	Note left of Browser : 'sunshine and rain'
+	Browser ->> Server : HTTPS POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+	Server ->> Browser : Status Code 201 .json file for new_note_spa
+	Browser ->> User : Rendered HTML
+	Note right of Browser : HTML with 'sunshine and rain'
 ```
