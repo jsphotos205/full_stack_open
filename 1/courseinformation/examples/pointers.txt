@@ -1,0 +1,2 @@
+in vs code use the coderunner extension on the mac by using control + option + n
+it outputs in a tab within the terminal window.
