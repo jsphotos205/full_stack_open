@@ -7,6 +7,8 @@ const App = (props) => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+  
+
   const setToGoodValue = (newGoodValue) => () => {
     console.log('value now', newGoodValue)
     setGood(newGoodValue)
