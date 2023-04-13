@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState } from "react"
+
 
 const History = (props) => {
   if (props.allClicks.length === 0){
@@ -70,7 +71,7 @@ const App = () => {
       <button onClick={handleRightClick}>right</button> */}
       {right}
       <History allClicks={allClicks} />
-      debugger;
+
       <p>{allClicks.join(' ')}</p>
       <p>total {total}</p>
     </div>
