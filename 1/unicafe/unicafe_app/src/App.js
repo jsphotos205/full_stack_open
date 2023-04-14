@@ -34,6 +34,7 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [total, setTotal] = useState(0)
 
   
 
@@ -43,7 +44,9 @@ const App = () => {
     const updatedGood = good + 1
 
     setGood(updatedGood)
-    console.log('good after', updatedGood)``
+    console.log('good after', updatedGood)
+
+    setTotal(updatedGood + neutral + bad)
   }
 
   const handleNeutralClick = () => {
@@ -53,6 +56,8 @@ const App = () => {
 
     setNeutral(updatedNeutral)
     console.log('neutral after', updatedNeutral)
+
+    setTotal(updatedNeutral + good + bad)
   }
 
   const handleBadClick = () => {
@@ -62,6 +67,8 @@ const App = () => {
 
     setBad(updatedBad)
     console.log('bad after', updatedBad)
+
+    setTotal(updatedBad + neutral + good)
   }
   return (
     <div>
@@ -70,6 +77,7 @@ const App = () => {
       <Button handleClick={handleNeutralClick} text='neutral'/>
       <Button handleClick={handleBadClick} text='bad'/>
       <Footer />
+      <p>total {total}</p>
     </div>
   )
 }
