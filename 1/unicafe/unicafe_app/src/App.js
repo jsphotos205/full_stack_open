@@ -10,10 +10,11 @@ const Header = (props) => {
   )
 }
 
-const Footer = () => {
+const Footer = (props) => {
   return(
     <div>
       <h2>Statistics</h2>
+      <p>{props.average}</p>
     </div>
   )
 }
@@ -27,14 +28,21 @@ const Button = (props) =>{
   )
 }
 
-const App = () => {
+const App = (props) => {
 
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [total, setTotal] = useState(0)
+  const [average, setAverage] = useState(0)
 
-  
+  const handleAverage = () => {
+    console.log('average before', average)
+
+    const updatedAverage = total / (good + neutral + bad)
+    setAverage(updatedAverage)
+    console.log('average after', average)
+  }
 
   const handleGoodClick = () => {
     console.log('good before', good)
@@ -76,11 +84,12 @@ const App = () => {
       <Button handleClick={handleGoodClick} text='good'/>
       <Button handleClick={handleNeutralClick} text='neutral'/>
       <Button handleClick={handleBadClick} text='bad'/>
-      <Footer />
+      {/* <Footer average={handleAverage}/> */}
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
       <p>total {total}</p>
+      {/* <p>average {average}</p> */}
     </div>
   )
 }
