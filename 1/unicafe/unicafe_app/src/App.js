@@ -1,7 +1,35 @@
 import { useState } from 'react'
 
-const App = (props) => {
-  console.log(props)
+const Header = (props) => {
+  return(
+    <div>
+      <h1>{props.text}</h1>
+    </div>
+  )
+}
+
+const Footer = () => {
+  return(
+    <div>
+      <h2>Statistics</h2>
+      <p>good</p>
+      <p>neutral</p>
+      <p>bad</p>
+    </div>
+  )
+}
+
+const Button = (props) =>{
+  const {handleClick, text} = props
+  return(
+    <button onClick={handleClick}>
+      {text}
+    </button>
+  )
+}
+
+const App = () => {
+
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -9,44 +37,39 @@ const App = (props) => {
 
   
 
-  const setToGoodValue = (newGoodValue) => () => {
-    console.log('value now', newGoodValue)
-    setGood(newGoodValue)
-  }
-  const setToNeutralValue = (newNeutralValue) => () => {
-    console.log('value now', newNeutralValue)
-    setNeutral(newNeutralValue)
-  }
-  const setToBadValue = (newBadValue) => () => {
-    console.log('value now', newBadValue)
-    setBad(newBadValue)
+  const handleGoodClick = () => {
+    console.log('good before', good)
+
+    const updatedGood = good + 1
+
+    setGood(updatedGood)
+    console.log('good after', updatedGood)``
   }
 
-  const Header = () =>{
-    return(
-      <div>
-        <h1>Please Give Feedback</h1>
-      </div>
-    )
+  const handleNeutralClick = () => {
+    console.log('neutral before', neutral)
 
-  }
-  const Button = (props) =>{
-    console.log(props)
-    return(
-      <div>
-        <button>
-          {props.text}
-        </button>
-      </div>
-    )
+    const updatedNeutral = neutral + 1
+
+    setNeutral(updatedNeutral)
+    console.log('neutral after', updatedNeutral)
   }
 
+  const handleBadClick = () => {
+    console.log('bad before', bad)
+
+    const updatedBad = bad + 1
+
+    setBad(updatedBad)
+    console.log('bad after', updatedBad)
+  }
   return (
     <div>
-      <Header />
-      <Button onClick={setToGoodValue(good + 1)} text='good'/>
-      <Button onClick={setToNeutralValue(neutral + 1)} text='neutral'/>
-      <Button onClick={setToBadValue(bad + 1)} text='bad'/>
+      <Header text='Please Give Feedback'/>
+      <Button handleClick={handleGoodClick} text='good'/>
+      <Button handleClick={handleNeutralClick} text='neutral'/>
+      <Button handleClick={handleBadClick} text='bad'/>
+      <Footer />
     </div>
   )
 }
