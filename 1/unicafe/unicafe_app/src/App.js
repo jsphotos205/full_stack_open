@@ -1,21 +1,10 @@
 import { useState } from 'react'
-// const Display = props => <div>{props.value}</div>
 
 const Header = (props) => {
   console.log(props)
   return(
     <div>
       <h1>{props.text}</h1>
-    </div>
-  )
-}
-
-const Footer = (props) => {
-  console.log(props)
-  return(
-    <div>
-      {props.text}
-      {props.response}
     </div>
   )
 }
@@ -30,7 +19,17 @@ const Button = (props) =>{
   )
 }
 
-const App = (props) => {
+const Statistics = (props) => {
+  console.log('props value is, ', props)
+
+  return(
+    <div>
+      <p>{props.text} = {props.response}</p>
+    </div>
+  )
+}
+
+const App = () => {
 
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -88,19 +87,17 @@ const App = (props) => {
 
   return (
     <div>
-      {/* <Display value={total}/> */}
       <Header text='Please Give Feedback'/>
       <Button handleClick={handleGoodClick} text='good'/>
       <Button handleClick={handleNeutralClick} text='neutral'/>
       <Button handleClick={handleBadClick} text='bad'/>
       <h2>Statistics:</h2>
-      <Footer text='Good ' response={good}/>
-      <Footer text='Neutral ' response={neutral}/>
-      <Footer text='Bad ' response={bad}/>
-      <Footer text='Total ' response={total}/>
-      <Footer text='Average ' response={average}/>
-      <Footer text='Positive Percent ' response={calculatePositivePercentage() + '%'}/>
-      {/* <p>Average {average}</p> */}
+      <Statistics text='Good ' response={good}/>
+      <Statistics text='Neutral ' response={neutral}/>
+      <Statistics text='Bad ' response={bad}/>
+      <Statistics text='Total ' response={total}/>
+      <Statistics text='Average ' response={average}/>
+      <Statistics text='Positive Percent ' response={calculatePositivePercentage() + '%'}/>
     </div>
   )
 }
