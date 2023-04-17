@@ -20,14 +20,44 @@ const Button = (props) =>{
 }
 
 const Statistics = (props) => {
-  console.log('props value is, ', props)
+  console.log('STATISTICS props value is, ', props)
 
-  return(
+  if (props.response === 0){
+    return (
+      <div>
+        <h1>Statistics: </h1>
+        Feedback not given
+      </div>
+    )
+  }
+  return (
     <div>
-      <p>{props.text} = {props.response}</p>
-    </div>
+      <h1>Statistics: </h1>
+      <p>{props.good} = {props.goodResponse}</p>
+      <p>{props.neutral} = {props.neutralResponse}</p>
+      <p>{props.bad} = {props.badResponse}</p>
+      <p>{props.total} = {props.totalResponse}</p>
+      <p>{props.average} = {props.averageResponse}</p>
+      <p>{props.postive} = {props.positiveResponse}</p>
+      </div>
   )
 }
+
+  // const {text, response} = props
+
+  // if (response === 0){
+  //   return (
+  //     <div>
+  //      Feedback not given
+  //     </div>
+  //   )
+  // }
+  // return(
+  //   <div>
+  //     <p>{text} = {response}</p>
+  //   </div>
+  // )
+  // }
 
 const App = () => {
 
@@ -91,13 +121,22 @@ const App = () => {
       <Button handleClick={handleGoodClick} text='good'/>
       <Button handleClick={handleNeutralClick} text='neutral'/>
       <Button handleClick={handleBadClick} text='bad'/>
-      <h2>Statistics:</h2>
-      <Statistics text='Good ' response={good}/>
+      {/* <Header text='Statistics: '/> */}
+      <Statistics response={total} 
+      good='Good ' goodResponse={good}
+      neutral= 'Neutral ' neutralResponse={neutral}
+      bad = 'Bad ' badResponse={bad}
+      total= 'Total ' totalResponse={total}
+      average= 'Average ' averageResponse={average}
+      postive= 'Positive ' positiveResponse={calculatePositivePercentage() + '%'}
+      />
+
+      {/* <Statistics text='Good ' response={good}/>
       <Statistics text='Neutral ' response={neutral}/>
       <Statistics text='Bad ' response={bad}/>
       <Statistics text='Total ' response={total}/>
       <Statistics text='Average ' response={average}/>
-      <Statistics text='Positive Percent ' response={calculatePositivePercentage() + '%'}/>
+      <Statistics text='Positive Percent ' response={calculatePositivePercentage() + '%'}/> */}
     </div>
   )
 }
