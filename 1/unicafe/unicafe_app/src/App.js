@@ -7,7 +7,6 @@ const Header = (props) => {
     </div>
   )
 }
-
 const Button = (props) =>{
   const {handleClick, text} = props
   return(
@@ -16,7 +15,6 @@ const Button = (props) =>{
     </button>
   )
 }
-
 const StatisticsLine = (props) => {
   const {text, value} = props
   return (
@@ -25,12 +23,9 @@ const StatisticsLine = (props) => {
     </div>
   )
 }
-
 const Statistics = (props) => {
   console.log('STATISTICS props value is, ', props)
-
   const {response, good, neutral, bad, total, average, calculatePositivePercentage} = props
-
   if (response === 0){
     return (
       <div>
@@ -51,58 +46,40 @@ const Statistics = (props) => {
       </div>
   )
 }
-
 const App = () => {
-
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [total, setTotal] = useState(0)
   const [average, setAverage] = useState(0)
-
   const handleGoodClick = () => {
-
     const updatedGood = good + 1
-
     setGood(updatedGood)
-
     setTotal(updatedGood + neutral + bad)
     calculateAverage(updatedGood, neutral, bad)
   }
-
   const handleNeutralClick = () => {
-
     const updatedNeutral = neutral + 1
-
     setNeutral(updatedNeutral)
-
-
     setTotal(updatedNeutral + good + bad)
     calculateAverage(good, updatedNeutral, bad)
   }
-
   const handleBadClick = () => {
-
     const updatedBad = bad + 1
-
     setBad(updatedBad)
-
     setTotal(updatedBad + neutral + good)
     calculateAverage(good, neutral, updatedBad)
   }
-
   const calculateAverage = (good, neutral, bad) => {
     const totalFeedback = good + neutral + bad
     const average = (good - bad) / totalFeedback
     setAverage(average)
   }
-
   const calculatePositivePercentage = () => {
     const totalFeedback = good + neutral + bad
     const positvePercentage = (good / totalFeedback) * 100
     return positvePercentage
   }
-
   return (
     <div>
       <Header text='Please Give Feedback'/>
@@ -113,5 +90,4 @@ const App = () => {
     </div>
   )
 }
-
 export default App
