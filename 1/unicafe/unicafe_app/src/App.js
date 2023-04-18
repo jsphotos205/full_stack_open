@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 const Header = (props) => {
-  console.log(props)
   return(
     <div>
       <h1>{props.text}</h1>
@@ -10,7 +9,6 @@ const Header = (props) => {
 }
 
 const Button = (props) =>{
-  console.log('props value is, ', props)
   const {handleClick, text} = props
   return(
     <button onClick={handleClick}>
@@ -19,10 +17,21 @@ const Button = (props) =>{
   )
 }
 
+const StatisticsLine = (props) => {
+  const {text, value} = props
+  return (
+    <div>
+      <p>{text} = {value}</p>
+    </div>
+  )
+}
+
 const Statistics = (props) => {
   console.log('STATISTICS props value is, ', props)
 
-  if (props.response === 0){
+  const {response, good, neutral, bad, total, average, calculatePositivePercentage} = props
+
+  if (response === 0){
     return (
       <div>
         <h1>Statistics: </h1>
@@ -33,12 +42,12 @@ const Statistics = (props) => {
   return (
     <div>
       <h1>Statistics: </h1>
-      <p>{props.good} = {props.goodResponse}</p>
-      <p>{props.neutral} = {props.neutralResponse}</p>
-      <p>{props.bad} = {props.badResponse}</p>
-      <p>{props.total} = {props.totalResponse}</p>
-      <p>{props.average} = {props.averageResponse}</p>
-      <p>{props.postive} = {props.positiveResponse}</p>
+      <StatisticsLine text='Good' value={good} />
+      <StatisticsLine text='Neutral' value={neutral} />
+      <StatisticsLine text='Bad' value={bad} />
+      <StatisticsLine text='Total' value={total} />
+      <StatisticsLine text='Average' value={average} />
+      <StatisticsLine text='Positive' value={calculatePositivePercentage()+'%'} />
       </div>
   )
 }
@@ -100,14 +109,7 @@ const App = () => {
       <Button handleClick={handleGoodClick} text='good'/>
       <Button handleClick={handleNeutralClick} text='neutral'/>
       <Button handleClick={handleBadClick} text='bad'/>
-      <Statistics response={total} 
-      good='Good ' goodResponse={good}
-      neutral= 'Neutral ' neutralResponse={neutral}
-      bad = 'Bad ' badResponse={bad}
-      total= 'Total ' totalResponse={total}
-      average= 'Average ' averageResponse={average}
-      postive= 'Positive ' positiveResponse={calculatePositivePercentage() + '%'}
-      />
+      <Statistics response={total} good={good} neutral={neutral} bad={bad} total={total} average={average} calculatePositivePercentage={calculatePositivePercentage}/>
     </div>
   )
 }
