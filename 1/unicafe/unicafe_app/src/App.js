@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 const Header = (props) => {
   return(
-    <div>
-      <h1>{props.text}</h1>
-    </div>
+  <div>
+    <h1>{props.text}</h1>
+  </div>
   )
 }
 const Button = (props) =>{
@@ -18,13 +18,12 @@ const Button = (props) =>{
 const StatisticsLine = (props) => {
   const {text, value} = props
   return (
-    <div>
-      <p>{text} = {value}</p>
-    </div>
+    <p>
+      {text} = {value}
+    </p>
   )
 }
 const Statistics = (props) => {
-  console.log('STATISTICS props value is, ', props)
   const {response, good, neutral, bad, total, average, calculatePositivePercentage} = props
   if (response === 0){
     return (
@@ -43,7 +42,7 @@ const Statistics = (props) => {
       <StatisticsLine text='Total' value={total} />
       <StatisticsLine text='Average' value={average} />
       <StatisticsLine text='Positive' value={calculatePositivePercentage()+'%'} />
-      </div>
+    </div>
   )
 }
 const App = () => {
@@ -82,11 +81,23 @@ const App = () => {
   }
   return (
     <div>
-      <Header text='Please Give Feedback'/>
-      <Button handleClick={handleGoodClick} text='good'/>
-      <Button handleClick={handleNeutralClick} text='neutral'/>
-      <Button handleClick={handleBadClick} text='bad'/>
-      <Statistics response={total} good={good} neutral={neutral} bad={bad} total={total} average={average} calculatePositivePercentage={calculatePositivePercentage}/>
+      <table>
+        <thead>
+          <tr>
+            <th colSpan={2}><Header text='Please Give Feedback'/></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><Button handleClick={handleGoodClick} text='good'/></td>
+            <td><Button handleClick={handleNeutralClick} text='neutral'/></td>
+            <td><Button handleClick={handleBadClick} text='bad'/></td>
+          </tr>
+          <tr>
+            <td colSpan={3}><Statistics response={total} good={good} neutral={neutral} bad={bad} total={total} average={average} calculatePositivePercentage={calculatePositivePercentage}/></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   )
 }
