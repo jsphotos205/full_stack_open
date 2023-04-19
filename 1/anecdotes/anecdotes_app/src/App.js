@@ -1,14 +1,12 @@
 import { useState } from 'react'
 
 const Header = (props) => {
-  console.log('HEADER props,', props)
   return(
     <h1>{props.text}</h1>
   )
 }
 
 const Button = (props) => {
-  console.log('BUTTON props,', props)
   const {handleClick, text} = props
 
   return(
@@ -30,9 +28,16 @@ const App = (props) => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Uint8Array(10))
 
   const setToSelected = (props) => {
     setSelected(props)
+  }
+
+  const setToVotes = () => {
+    const copy = [...votes]
+    copy[selected] += 1
+    setVotes(copy)
   }
 
   return (
@@ -40,6 +45,10 @@ const App = (props) => {
       <Header text='Anecdotes of the day'/>
       <p>{anecdotes[selected]}</p>
       <Button handleClick={() => setToSelected(()=> Math.floor(Math.random() * anecdotes.length))} text='Next Anecdote'/>
+      <Button handleClick={() => setToVotes()} text='vote'/>
+      <Header text='Anecdote with most votes'/>
+      <p>{anecdotes[votes.indexOf(Math.max.apply(0,votes))]}</p>
+      <p>has {votes[votes.indexOf(Math.max.apply(0,votes))]} votes</p>
     </div>
   )
 }
