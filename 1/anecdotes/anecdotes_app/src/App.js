@@ -1,5 +1,21 @@
 import { useState } from 'react'
 
+const Header = (props) => {
+  console.log('HEADER props,', props)
+  return(
+    <h1>{props.text}</h1>
+  )
+}
+
+const Button = (props) => {
+  console.log('BUTTON props,', props)
+  const {handleClick, text} = props
+
+  return(
+    <button onClick={handleClick}>{text}</button>
+  )
+}
+
 const App = (props) => {
 
   const anecdotes = [
@@ -15,9 +31,15 @@ const App = (props) => {
    
   const [selected, setSelected] = useState(0)
 
+  const setToSelected = (props) => {
+    setSelected(props)
+  }
+
   return (
     <div>
-      {anecdotes[selected]}
+      <Header text='Anecdotes of the day'/>
+      <p>{anecdotes[selected]}</p>
+      <Button handleClick={() => setToSelected(()=> Math.floor(Math.random() * anecdotes.length))} text='Next Anecdote'/>
     </div>
   )
 }
