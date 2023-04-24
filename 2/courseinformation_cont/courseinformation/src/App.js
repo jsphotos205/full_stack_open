@@ -25,11 +25,13 @@ const App = () => {
 }
 
 const Course = (props) => {
+  console.log('COURSE props =', props);
   const {course} = props
   return(
     <div>
       <Header name={course.name}/>
       <Content parts={course.parts}/>
+      <Total parts={course.parts}/>
     </div>
   )
 }
@@ -40,6 +42,7 @@ const Header = (props) => {
   )
 }
 const Content = (props) => {
+  console.log('CONTENT props =', props);
   const {parts} = props
   return(
     <div>
@@ -50,10 +53,21 @@ const Content = (props) => {
   )
 }
 const Part = (props) => {
+  console.log('PART props =', props);
   const {name, exercises} = props
   return (
     <p>{name} : {exercises}</p>
   )
 }
+const Total = (props) => {
+  console.log('TOTAL props =', props)
+  const {parts} = props
+  const totalExercises = parts.reduce((total,part) => total + part.exercises, 0)
 
+  return(
+    <div>
+      <p>Total Exercises : {totalExercises}</p>
+    </div>
+  )
+}
 export default App
