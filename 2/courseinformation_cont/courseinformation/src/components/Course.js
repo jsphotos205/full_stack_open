@@ -10,6 +10,7 @@ const Course = (props) => {
     )
   }
   const Header = (props) => {
+    console.log('HEADER props =', props)
     const {name} = props
     return(
       <div>
