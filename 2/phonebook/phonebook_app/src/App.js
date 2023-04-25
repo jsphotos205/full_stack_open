@@ -13,20 +13,16 @@ const App = () => {
    }
     setPersons(persons.concat(personObject))
     setNewName('')
+    if (persons.find(person => person.name === newName)){
+      alert(newName + ' is already added to phonebook')
+    }
   } 
 
-  const [newName, setNewName] = useState('a new name')
+  const [newName, setNewName] = useState('')
 
   const handlePersonChange = (event) => {
-    // console.log(event.target.value)
     setNewName(event.target.value)
   }
-
-  // const [showAll, setShowAll] = useState(true)
-
-  // const personToShow = showAll
-  // ? persons
-  // : persons.filter(person => person.important)
 
   return (
     <div>
@@ -43,11 +39,6 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {/* <div>
-        <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? 'important' : 'all'}
-        </button>
-      </div> */}
       <ul>
         {persons.map(person =>
           <Note key={person.id} note={person}/>
