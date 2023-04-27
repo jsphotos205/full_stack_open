@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom/client'
 
 import App from './App'
 
-const notes = [{
-    // id : 1,
-    // name : 'John Sloan',
-}]
+const notes = [{}]
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App notes={notes}/>)

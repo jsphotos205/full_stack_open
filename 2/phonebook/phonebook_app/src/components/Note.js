@@ -1,6 +1,7 @@
 const Note = ({note}) => {
     return(
-        <li>{note.name}</li>
-    )
-}
+    <div>
+    <p>{note.name} {note.number}</p>
+    </div>
+)}
 export default Note
