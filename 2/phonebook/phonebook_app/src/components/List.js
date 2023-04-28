@@ -7,8 +7,9 @@ const Note = ({note}) => {
         </div>
     )
 }
+
 const List = () => {
-    
+
     const [persons, setPersons] = useState([
         { name: 'John Sloan', number: '205', id: 1 },
         { name: 'Eleanor Krause', number: '812', id: 2 },
@@ -41,9 +42,32 @@ const List = () => {
         setNewNumber(event.target.value)
       }
 
+      const [state, setState] = useState({
+        query : '',
+        list : []
+      })
+
+      const handleChange = (e) => {
+        const results = persons.filter(person => {
+            if (e.target.value === "") return persons
+            return person.name.toLowerCase().includes(e.target.value.toLowerCase())
+        })
+        setState({
+            query : e.target.value,
+            list : results
+        })
+      }
       return (
         <form onSubmit={addPerson}>
             <div>
+
+            <p>Filter Entries:</p>
+            <div>
+                <form>
+                    <input type='search' value={state.query} onChange={handleChange}/>
+                </form>
+            </div>
+            <h2>New Entry:</h2>
                 <p>Name:</p>
                 <input
                 value={newName}
@@ -60,10 +84,9 @@ const List = () => {
             </div>
             <h2>Contacts</h2>
             <ul>
-        {persons.map(person =>
-          <Note key={person.id} note={person}/>
-          )}
-      </ul>
+                {(state.query === '' ? persons : state.list).map(person =>
+                    <Note key={person.id} note={person}/>)}
+            </ul>
         </form>
       )
 }
